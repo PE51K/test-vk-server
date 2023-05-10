@@ -13,7 +13,13 @@ mongoose
 
 const app = express()
 app.use(express.json())
-app.use(cors())
+
+const corsOptions = {
+    origin: "https://test-vk-client.onrender.com",
+};
+
+app.use(cors(corsOptions));
+
 app.use('/uploads', express.static('uploads'))
 
 const storage = multer.diskStorage({
