@@ -1,28 +1,15 @@
 {
-
-  "name": "test_vk_backend",
-
+  "name": "test_vk_server",
   "type": "module",
-
   "version": "1.0.0",
-
   "dependencies": {
-
     "bcrypt": "*",
-
     "cors": "*",
-
     "express": "*",
-
     "express-validator": "*",
-
     "jsonwebtoken": "*",
-
     "mongoose": "*",
-
     "multer": "*"
-
   }
-
 }
 

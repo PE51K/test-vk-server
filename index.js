@@ -12,15 +12,14 @@ mongoose
     .catch((err) => console.log('DB error', err))
 
 const app = express()
-app.use(express.json())
 
 const corsOptions = {
-    origin: "https://test-vk-client.onrender.com",
+    origin: ["https://test-vk-client.onrender.com", "*"]
 };
 
 app.use(cors(corsOptions));
-
 app.use('/uploads', express.static('uploads'))
+app.use(express.json())
 
 const storage = multer.diskStorage({
     "destination": (_, __, cb) => {
@@ -51,12 +50,13 @@ app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors,
 app.post('/posts/:id/like', checkAuth, PostController.likePost)
 app.delete('/posts/:id/like', checkAuth, PostController.unlikePost)
 app.get('/users/:userId/posts', PostController.getPostsByUser)
-app.get('/friends/posts', checkAuth, PostController.getFriendsPosts);
 
 app.get('/users', UserController.getUsers)
 app.post('/users/:id/friends', checkAuth, UserController.addFriend);
 app.delete('/users/:id/friends', checkAuth, UserController.removeFriend);
 app.get('/users/:id', UserController.getUserById);
+
+app.get('/friends/posts', checkAuth, PostController.getFriendsPosts);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, (err) => {
