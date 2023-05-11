@@ -14,7 +14,7 @@ mongoose
 const app = express()
 
 const corsOptions = {
-    origin: ["https://test-vk-client.onrender.com", "*"]
+    "origin": "*"
 };
 
 app.use(cors(corsOptions));
